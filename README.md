@@ -1,16 +1,13 @@
-# PaintedFlowersExpert
+# Cake(画饼专家😎)
 
-
-# PaintedFlowersExpert(画饼专家😎)
-
-✨ PaintedFlowersExpert(画饼专家😎) - 是一款为女友@willow定制化的一款任务积分制系统
+✨ Cake(画饼专家😎) - 是一款为女友@willow定制化的一款任务积分制系统
 
 <!-- PROJECT SHIELDS -->
 
-![GitHub last commit](https://img.shields.io/github/last-commit/Touch-Sun/PaintedFlowersExpert)
-![GitHub issues](https://img.shields.io/github/issues/Touch-Sun/PaintedFlowersExpert)
-![GitHub Repo stars](https://img.shields.io/github/stars/Touch-Sun/PaintedFlowersExpert)
-![GitHub](https://img.shields.io/github/license/Touch-Sun/PaintedFlowersExpert)
+![GitHub last commit](https://img.shields.io/github/last-commit/Touch-Sun/Cake)
+![GitHub issues](https://img.shields.io/github/issues/Touch-Sun/Cake)
+![GitHub Repo stars](https://img.shields.io/github/stars/Touch-Sun/Cake)
+![GitHub](https://img.shields.io/github/license/Touch-Sun/Cake)
 
 <!-- PROJECT LOGO -->
 <br />
@@ -31,7 +28,7 @@
 </p>
 
 
-PaintedFlowersExpert面向@willow这个女孩儿😍😍
+Cake面向@willow这个女孩儿😍😍
 
 ## 目录
 
@@ -61,7 +58,7 @@ PaintedFlowersExpert面向@willow这个女孩儿😍😍
 不用安装
 
 ```sh
-git clone https://github.com/Touch-Sun/PaintedFlowersExpert.git
+git clone https://github.com/Touch-Sun/Cake.git
 ```
 
 ### 文件目录说明
