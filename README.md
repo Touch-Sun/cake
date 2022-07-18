@@ -20,7 +20,7 @@
     <img style="box-shadow: 1px 1px 10px #6b1839; border-radius: 15px" src="https://s3.bmp.ovh/imgs/2022/07/18/53ad7b818a75b05f.webp" alt="Logo" width="auto" height="auto">
   </a>
 
-<h3 align="center">惩罚系统、积分兑换系统、惊喜模块</h3>
+<h3 align="center">🤩惩罚/奖励、积分兑换、惊喜模块</h3>
   <p align="center">
     画大饼 😃😃😃 画饼专家🐎 换积分 😎😎😎
     <br />
