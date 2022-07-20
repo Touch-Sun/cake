@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.touchsun.cake.dao.CakeScoreLogDao">
+
+    <resultMap type="com.touchsun.cake.entity.CakeScoreLog" id="CakeScoreLogMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="objectId" column="object_id" jdbcType="INTEGER"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="flag" column="flag" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CakeScoreLogMap">
+        select
+          id, user_id, object_id, score, create_time, flag
+        from cake_score_log
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CakeScoreLogMap">
+        select
+          id, user_id, object_id, score, create_time, flag
+        from cake_score_log
+        <where>
+            flag = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="objectId != null">
+                and object_id = #{objectId}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="flag != null">
+                and flag = #{flag}
+            </if>
+        </where>
+
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from cake_score_log
+        <where>
+            flag = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="objectId != null">
+                and object_id = #{objectId}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="flag != null">
+                and flag = #{flag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into cake_score_log(user_id, object_id, score, create_time, flag)
+        values (#{userId}, #{objectId}, #{score}, #{createTime}, #{flag})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into cake_score_log(user_id, object_id, score, create_time, flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.userId}, #{entity.objectId}, #{entity.score}, #{entity.createTime}, #{entity.flag})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into cake_score_log(user_id, object_id, score, create_time, flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.objectId}, #{entity.score}, #{entity.createTime}, #{entity.flag})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        object_id = values(object_id),
+        score = values(score),
+        create_time = values(create_time),
+        flag = values(flag)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update cake_score_log
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="objectId != null">
+                object_id = #{objectId},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="flag != null">
+                flag = #{flag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from cake_score_log where id = #{id}
+    </delete>
+
+</mapper>
+

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.touchsun.cake.dao.CakeTaskDao">
+
+    <resultMap type="com.touchsun.cake.entity.CakeTask" id="CakeTaskMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="desc" column="desc" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="execUser" column="exec_user" jdbcType="INTEGER"/>
+        <result property="createUser" column="create_user" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="flag" column="flag" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CakeTaskMap">
+        select
+          id, name, `desc`, `status`, score, exec_user, create_user, create_time, update_time, flag
+        from cake_task
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CakeTaskMap">
+        select
+          id, name, `desc`, `status`, score, exec_user, create_user, create_time, update_time, flag
+        from cake_task
+        <where>
+            flag = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="desc != null and desc != ''">
+                and desc = #{desc}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="execUser != null">
+                and exec_user = #{execUser}
+            </if>
+            <if test="createUser != null">
+                and create_user = #{createUser}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="flag != null">
+                and flag = #{flag}
+            </if>
+        </where>
+
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from cake_task
+        <where>
+            flag = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="desc != null and desc != ''">
+                and desc = #{desc}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="execUser != null">
+                and exec_user = #{execUser}
+            </if>
+            <if test="createUser != null">
+                and create_user = #{createUser}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="flag != null">
+                and flag = #{flag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into cake_task(name, desc, status, score, exec_user, create_user, create_time, update_time, flag)
+        values (#{name}, #{desc}, #{status}, #{score}, #{execUser}, #{createUser}, #{createTime}, #{updateTime}, #{flag})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into cake_task(name, desc, status, score, exec_user, create_user, create_time, update_time, flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.name}, #{entity.desc}, #{entity.status}, #{entity.score}, #{entity.execUser}, #{entity.createUser}, #{entity.createTime}, #{entity.updateTime}, #{entity.flag})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into cake_task(name, desc, status, score, exec_user, create_user, create_time, update_time, flag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.desc}, #{entity.status}, #{entity.score}, #{entity.execUser}, #{entity.createUser}, #{entity.createTime}, #{entity.updateTime}, #{entity.flag})
+        </foreach>
+        on duplicate key update
+        name = values(name),
+        desc = values(desc),
+        status = values(status),
+        score = values(score),
+        exec_user = values(exec_user),
+        create_user = values(create_user),
+        create_time = values(create_time),
+        update_time = values(update_time),
+        flag = values(flag)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update cake_task
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="desc != null and desc != ''">
+                desc = #{desc},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="execUser != null">
+                exec_user = #{execUser},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="flag != null">
+                flag = #{flag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from cake_task where id = #{id}
+    </delete>
+
+</mapper>
+

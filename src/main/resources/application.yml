@@ -1,0 +1,30 @@
+server:
+  port: 1030
+spring:
+  application:
+    name: cake-api
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: lige1204@
+    url: jdbc:mysql://sh-cynosdbmysql-grp-d6dt8ttk.sql.tencentcdb.com:24689/cake?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: CakeHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+cake:
+  img:
+    url: http://cake.img.leewillow.com/
+    path: /cake/img
